@@ -10,8 +10,8 @@ export default function MovieCard({ item }: { item: MovieI }) {
       <Image
         source={{ uri: image500(item.poster_path) ?? "" }}
         style={{
-          width: width * 0.5,
-          height: height * 0.45,
+          width: width * 0.7,
+          height: height * 0.5,
           margin: "auto",
           borderRadius: 10,
         }}

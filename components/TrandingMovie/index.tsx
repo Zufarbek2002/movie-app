@@ -6,7 +6,6 @@ import { useSharedValue } from "react-native-reanimated";
 import { MovieI } from "@/types/Movie";
 
 export default function TrendingMovie({ trending }: { trending: MovieI[] }) {
-  console.log(trending);
   const { width, height } = Dimensions.get("window");
   const progress = useSharedValue<number>(0);
   const renderItem = ({ item }: { item: MovieI }) => {
@@ -18,7 +17,7 @@ export default function TrendingMovie({ trending }: { trending: MovieI[] }) {
       <Carousel
         data={trending}
         renderItem={renderItem}
-        height={height * 0.45}
+        height={height * 0.5}
         loop={true}
         pagingEnabled={true}
         snapEnabled={true}
@@ -29,7 +28,7 @@ export default function TrendingMovie({ trending }: { trending: MovieI[] }) {
         mode="parallax"
         modeConfig={{
           parallaxScrollingScale: 0.9,
-          parallaxScrollingOffset: 210,
+          parallaxScrollingOffset: 145,
         }}
         onProgressChange={(_, absoluteProgress) => {
           progress.value = absoluteProgress;

@@ -2,16 +2,22 @@ import React, { useEffect, useState } from "react";
 import { Image, ScrollView, StatusBar, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { MagnifyingGlassIcon } from "react-native-heroicons/outline";
-import { fetchTopRatedMovie, fetchTrendingMovie } from "@/api";
+import {
+  fetchPopularMovie,
+  fetchTopRatedMovie,
+  fetchTrendingMovie,
+} from "@/api";
 import TopRatedMovie from "@/components/TopRatedMovie";
 import TrendingMovie from "@/components/TrandingMovie";
 
 export default function Home() {
   const [trending, setTrending] = useState([]);
   const [topRated, setTopRated] = useState([]);
+  const [popular, setPopular] = useState([]);
   useEffect(() => {
     getTopRatedMovie();
     getTrendingMovie();
+    getPopularMovie();
   }, []);
 
   const getTrendingMovie = async () => {
@@ -22,6 +28,11 @@ export default function Home() {
   const getTopRatedMovie = async () => {
     const data = await fetchTopRatedMovie();
     setTopRated(data.results);
+  };
+
+  const getPopularMovie = async () => {
+    const data = await fetchPopularMovie();
+    setPopular(data.results);
   };
   return (
     <View className="flex-1 bg-slate-900">
@@ -43,7 +54,12 @@ export default function Home() {
         contentContainerStyle={{ paddingBottom: 10 }}
       >
         {trending.length > 0 && <TrendingMovie trending={trending} />}
-        {topRated.length > 0 && <TopRatedMovie />}
+        {topRated.length > 0 && (
+          <TopRatedMovie topRated={topRated} title={"Top Rated"} />
+        )}
+        {popular.length > 0 && (
+          <TopRatedMovie topRated={popular} title={"Popular"} />
+        )}
       </ScrollView>
     </View>
   );
