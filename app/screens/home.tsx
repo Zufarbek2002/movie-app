@@ -9,11 +9,14 @@ import {
 } from "@/api";
 import TopRatedMovie from "@/components/TopRatedMovie";
 import TrendingMovie from "@/components/TrandingMovie";
+import Loader from "@/components/Loader";
 
 export default function Home() {
   const [trending, setTrending] = useState([]);
   const [topRated, setTopRated] = useState([]);
   const [popular, setPopular] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     getTopRatedMovie();
     getTrendingMovie();
@@ -23,6 +26,7 @@ export default function Home() {
   const getTrendingMovie = async () => {
     const data = await fetchTrendingMovie();
     setTrending(data.results);
+    setIsLoading(false);
   };
 
   const getTopRatedMovie = async () => {
@@ -49,18 +53,22 @@ export default function Home() {
           <MagnifyingGlassIcon color={"white"} size={30} strokeWidth={2} />
         </View>
       </SafeAreaView>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 10 }}
-      >
-        {trending.length > 0 && <TrendingMovie trending={trending} />}
-        {topRated.length > 0 && (
-          <TopRatedMovie topRated={topRated} title={"Top Rated"} />
-        )}
-        {popular.length > 0 && (
-          <TopRatedMovie topRated={popular} title={"Popular"} />
-        )}
-      </ScrollView>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingBottom: 10 }}
+        >
+          {trending.length > 0 && <TrendingMovie trending={trending} />}
+          {topRated.length > 0 && (
+            <TopRatedMovie topRated={topRated} title={"Top Rated"} />
+          )}
+          {popular.length > 0 && (
+            <TopRatedMovie topRated={popular} title={"Popular"} />
+          )}
+        </ScrollView>
+      )}
     </View>
   );
 }
