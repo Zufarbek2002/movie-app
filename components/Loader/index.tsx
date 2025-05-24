@@ -1,20 +1,34 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import AnimatedLoader from "react-native-animated-loader";
 
 export default function Loader() {
   return (
-    <AnimatedLoader
-      overlayColor="rgba(255,255,255,0.75)"
-      source={require("../../assets/loader.json")}
-      animationStyle={styles.lottie}
-      speed={1}
-    ></AnimatedLoader>
+    <View style={styles.container}>
+      <AnimatedLoader
+        visible={true}
+        source={require("../../assets/loader.json")}
+        animationStyle={styles.lottie}
+        speed={1}
+      />
+      <Text style={styles.text}>Yuklanmoqda...</Text>
+    </View>
   );
 }
+
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#0f172a",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   lottie: {
     width: 100,
     height: 100,
+  },
+  text: {
+    marginTop: 10,
+    fontSize: 16,
   },
 });
