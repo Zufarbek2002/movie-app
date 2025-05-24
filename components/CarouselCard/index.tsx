@@ -1,30 +1,29 @@
 import React from "react";
-import { Dimensions, Text, View } from "react-native";
+import { View } from "react-native";
 import MovieCard from "../MovieCard";
 import Carousel from "react-native-reanimated-carousel";
 import { useSharedValue } from "react-native-reanimated";
 import { MovieI } from "@/types/Movie";
+import { h, w } from "@/constants/Window";
 
-export default function TrendingMovie({ trending }: { trending: MovieI[] }) {
-  console.log(trending);
-  const { width, height } = Dimensions.get("window");
+export default function CarouselCard({ data }: { data: MovieI[] }) {
   const progress = useSharedValue<number>(0);
   const renderItem = ({ item }: { item: MovieI }) => {
     return <MovieCard item={item} />;
   };
-  if (!trending.length) return null;
+  if (!data.length) return null;
   return (
     <View>
       <Carousel
-        data={trending}
+        data={data}
         renderItem={renderItem}
-        height={height * 0.45}
+        height={h * 0.45}
         loop={true}
         pagingEnabled={true}
         snapEnabled={true}
-        width={width}
+        width={w}
         style={{
-          width: width,
+          width: w,
         }}
         mode="parallax"
         modeConfig={{

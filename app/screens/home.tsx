@@ -3,8 +3,8 @@ import { Image, ScrollView, StatusBar, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { MagnifyingGlassIcon } from "react-native-heroicons/outline";
 import { fetchTopRatedMovie, fetchTrendingMovie } from "@/api";
-import TopRatedMovie from "@/components/TopRatedMovie";
-import TrendingMovie from "@/components/TrandingMovie";
+import CarouselCard from "@/components/CarouselCard";
+import ScrollCard from "@/components/ScrollCard";
 
 export default function Home() {
   const [trending, setTrending] = useState([]);
@@ -40,10 +40,15 @@ export default function Home() {
       </SafeAreaView>
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 10 }}
+        contentContainerStyle={{ paddingBottom: 10, marginBottom: 10 }}
       >
-        {trending.length > 0 && <TrendingMovie trending={trending} />}
-        {topRated.length > 0 && <TopRatedMovie />}
+        {trending.length > 0 && <CarouselCard data={trending} />}
+        {topRated.length > 0 && (
+          <ScrollCard data={topRated} title="Top Movies" />
+        )}
+        {topRated.length > 0 && (
+          <ScrollCard data={topRated} title="Top Movies" />
+        )}
       </ScrollView>
     </View>
   );
