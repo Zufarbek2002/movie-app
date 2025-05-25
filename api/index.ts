@@ -32,12 +32,12 @@ export const fetchSimilarMovie = (id: number) => {
     return apiRequest(similarMovie(id))
 }
 
-export const image500 = (posterPath: string) => {
+export const image500 = (posterPath?: string) => {
     return posterPath ? `https://image.tmdb.org/t/p/w500${posterPath}` : null
 }
-export const image342 = (posterPath: string) => {
+export const image342 = (posterPath?: string) => {
     return posterPath ? `https://image.tmdb.org/t/p/w342${posterPath}` : null
 }
-export const image185 = (posterPath: string) => {
+export const image185 = (posterPath?: string) => {
     return posterPath ? `https://image.tmdb.org/t/p/w185${posterPath}` : null
 }

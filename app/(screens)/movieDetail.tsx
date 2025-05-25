@@ -20,6 +20,8 @@ import {
 import { h, w } from "@/constants/Screen";
 import { LinearGradient } from "expo-linear-gradient";
 import Loader from "@/components/Loader";
+import Actors from "@/components/MovieDetail/Actors";
+import ScrollCard from "@/components/ScrollCard";
 export default function MovieDetail() {
   const navigation = useNavigation();
   const { id } = useLocalSearchParams();
@@ -46,12 +48,10 @@ export default function MovieDetail() {
   };
   const getSimilarMovie = async () => {
     const data = await fetchSimilarMovie(+id);
-    setCredits(data.results);
+    setSimilar(data.results);
   };
-
   return (
     <ScrollView className="flex-1 bg-slate-900">
-      {/* <View className="w-full"> */}
       <SafeAreaView className="absolute z-20 w-full flex-row justify-between items-center px-4">
         <StatusBar backgroundColor={"transparent"} />
         <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -82,7 +82,34 @@ export default function MovieDetail() {
           />
         </View>
       )}
-      {/* </View> */}
+      <View className="flex gap-y-4 items-center -mt-10">
+        <Text className="text-white text-4xl space-x-4 font-bold tracking-widest text-center">
+          {detail?.title}
+        </Text>
+        <Text className="text-stone-400 text-xl">
+          {detail.status} • {detail?.release_date?.split("-")[0]} •{" "}
+          {detail?.runtime} min
+        </Text>
+        <View className="flex-row">
+          {detail?.genres?.map(
+            (item: { id: number; name: string }, idx: number) => (
+              <Text key={item?.id} className="text-stone-400 text-xl text-bace">
+                {item?.name}
+                {detail.genres.length !== idx + 1 ? " • " : null}
+              </Text>
+            )
+          )}
+        </View>
+        <Text className="text-neutral-400 tracking-wide mx-4">
+          {detail.overview}
+        </Text>
+      </View>
+      {detail.id && credits.length > 0 && (
+        <Actors data={credits} title={"Actors"} />
+      )}
+      {detail.id && similar.length > 0 && (
+        <ScrollCard data={similar} title={"Similar movies"} />
+      )}
     </ScrollView>
   );
 }

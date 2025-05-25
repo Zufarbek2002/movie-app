@@ -7,9 +7,9 @@ import {
   fetchTopRatedMovie,
   fetchTrendingMovie,
 } from "@/api";
-import TopRatedMovie from "@/components/TopRatedMovie";
-import TrendingMovie from "@/components/TrandingMovie";
 import Loader from "@/components/Loader";
+import CarouselCard from "@/components/CarouselCard";
+import ScrollCard from "@/components/ScrollCard";
 
 export default function Home() {
   const [trending, setTrending] = useState([]);
@@ -60,13 +60,14 @@ export default function Home() {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ paddingBottom: 10 }}
         >
-          {trending.length > 0 && <TrendingMovie trending={trending} />}
+          {trending.length > 0 && <CarouselCard data={trending} />}
           {topRated.length > 0 && (
-            <TopRatedMovie data={topRated} title={"Top Rated"} />
+            <ScrollCard data={topRated} title={"Top rated movies"} />
           )}
-          {popular.length > 0 && (
-            <TopRatedMovie data={popular} title={"Popular"} />
+          {trending.length > 0 && (
+            <ScrollCard data={trending} title={"Trending movies"} />
           )}
+          {popular.length > 0 && <CarouselCard data={popular} />}
         </ScrollView>
       )}
     </View>

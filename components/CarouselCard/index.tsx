@@ -5,17 +5,17 @@ import Carousel from "react-native-reanimated-carousel";
 import { useSharedValue } from "react-native-reanimated";
 import { MovieI } from "@/types/Movie";
 
-export default function TrendingMovie({ trending }: { trending: MovieI[] }) {
+export default function CarouselCard({ data }: { data: MovieI[] }) {
   const { width, height } = Dimensions.get("window");
   const progress = useSharedValue<number>(0);
   const renderItem = ({ item }: { item: MovieI }) => {
     return <MovieCard item={item} />;
   };
-  if (!trending.length) return null;
+  if (!data.length) return null;
   return (
     <View>
       <Carousel
-        data={trending}
+        data={data}
         renderItem={renderItem}
         height={height * 0.5}
         loop={true}
