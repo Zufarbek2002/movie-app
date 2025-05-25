@@ -11,6 +11,10 @@ export default function StackLayout() {
         name="movieDetail"
         options={{ headerShown: false, title: "Movie detail" }}
       />
+      <Stack.Screen
+        name="actorDetail"
+        options={{ headerShown: false, title: "Actor detail" }}
+      />
     </Stack>
   );
 }

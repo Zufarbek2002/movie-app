@@ -25,7 +25,7 @@ import ScrollCard from "@/components/ScrollCard";
 export default function MovieDetail() {
   const navigation = useNavigation();
   const { id } = useLocalSearchParams();
-  const [isFavourite, setIsFavourite] = useState(false);
+  const [isFavourite, setIsFavourite] = useState<boolean>(false);
   const [detail, setDetail] = useState<any>({});
   const [credits, setCredits] = useState<any[]>([]);
   const [similar, setSimilar] = useState<any[]>([]);
