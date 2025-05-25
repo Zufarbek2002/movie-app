@@ -7,6 +7,10 @@ const trendingMovie = `${base_url}/trending/movie/day?api_key=${api_key}`
 const topRatedMovie = `${base_url}/movie/top_rated?api_key=${api_key}`
 const popularMovie = `${base_url}/movie/popular?api_key=${api_key}`
 
+const movieDetail = (id: number) => `${base_url}/movie/${id}?api_key=${api_key}`
+const movieCredits = (id: number) => `${base_url}/movie/${id}/credits?api_key=${api_key}`
+const similarMovie = (id: number) => `${base_url}/movie/${id}/similar?api_key=${api_key}`
+
 export const fetchTopRatedMovie = () => {
     return apiRequest(topRatedMovie)
 }
@@ -16,6 +20,16 @@ export const fetchTrendingMovie = () => {
 
 export const fetchPopularMovie = () => {
     return apiRequest(popularMovie)
+}
+
+export const fetchMovieDetail = (id: number) => {
+    return apiRequest(movieDetail(id))
+}
+export const fetchMovieCredits = (id: number) => {
+    return apiRequest(movieCredits(id))
+}
+export const fetchSimilarMovie = (id: number) => {
+    return apiRequest(similarMovie(id))
 }
 
 export const image500 = (posterPath: string) => {

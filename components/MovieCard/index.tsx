@@ -1,15 +1,20 @@
 import { image500 } from "@/api";
 import { h, w } from "@/constants/Screen";
 import { MovieI } from "@/types/Movie";
-import { useNavigation } from "expo-router";
+import { useRouter } from "expo-router";
 import React from "react";
 import { Image, TouchableWithoutFeedback } from "react-native";
 
 export default function MovieCard({ item }: { item: MovieI }) {
-  const navigation = useNavigation<any>();
+  const router = useRouter();
   return (
     <TouchableWithoutFeedback
-      onPress={() => navigation.navigate("movieDetail", item)}
+      onPress={() =>
+        router.push({
+          pathname: "/(screens)/movieDetail",
+          params: { id: item.id },
+        })
+      }
     >
       <Image
         source={{ uri: image500(item.poster_path) ?? "" }}
