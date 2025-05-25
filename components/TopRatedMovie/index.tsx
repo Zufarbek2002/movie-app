@@ -4,10 +4,10 @@ import React from "react";
 import { Dimensions, Image, ScrollView, Text, View } from "react-native";
 
 export default function TopRatedMovie({
-  topRated,
+  data,
   title,
 }: {
-  topRated: MovieI[];
+  data: MovieI[];
   title: string;
 }) {
   const { width, height } = Dimensions.get("window");
@@ -19,7 +19,7 @@ export default function TopRatedMovie({
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ paddingHorizontal: 15 }}
       >
-        {topRated.map((item) => (
+        {data?.map((item) => (
           <View className="" key={item.id}>
             <Image
               source={{ uri: image185(item.poster_path) ?? "" }}
@@ -32,7 +32,7 @@ export default function TopRatedMovie({
             />
             <Text className="text-white">
               {item.title.length > 12
-                ? item.title.slice(0, 12) + '...'
+                ? item.title.slice(0, 12) + "..."
                 : item.title}
             </Text>
           </View>

@@ -11,7 +11,7 @@ export default function Loader() {
         animationStyle={styles.lottie}
         speed={1}
       />
-      <Text style={styles.text}>Yuklanmoqda...</Text>
+      <Text style={styles.text}>Loading...</Text>
     </View>
   );
 }

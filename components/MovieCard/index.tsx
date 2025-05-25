@@ -1,21 +1,25 @@
-import { image185, image500 } from "@/api";
+import { image500 } from "@/api";
+import { h, w } from "@/constants/Screen";
 import { MovieI } from "@/types/Movie";
+import { useNavigation } from "expo-router";
 import React from "react";
-import { Dimensions, Image, Text, View } from "react-native";
+import { Image, TouchableWithoutFeedback } from "react-native";
 
 export default function MovieCard({ item }: { item: MovieI }) {
-  const { width, height } = Dimensions.get("window");
+  const navigation = useNavigation<any>();
   return (
-    <View>
+    <TouchableWithoutFeedback
+      onPress={() => navigation.navigate("movieDetail", item)}
+    >
       <Image
         source={{ uri: image500(item.poster_path) ?? "" }}
         style={{
-          width: width * 0.7,
-          height: height * 0.5,
+          width: w * 0.7,
+          height: h * 0.5,
           margin: "auto",
           borderRadius: 10,
         }}
       />
-    </View>
+    </TouchableWithoutFeedback>
   );
 }

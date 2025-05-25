@@ -62,10 +62,10 @@ export default function Home() {
         >
           {trending.length > 0 && <TrendingMovie trending={trending} />}
           {topRated.length > 0 && (
-            <TopRatedMovie topRated={topRated} title={"Top Rated"} />
+            <TopRatedMovie data={topRated} title={"Top Rated"} />
           )}
           {popular.length > 0 && (
-            <TopRatedMovie topRated={popular} title={"Popular"} />
+            <TopRatedMovie data={popular} title={"Popular"} />
           )}
         </ScrollView>
       )}
