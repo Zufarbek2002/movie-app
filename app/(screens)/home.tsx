@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Image, ScrollView, StatusBar, Text, View } from "react-native";
+import {
+  Image,
+  ScrollView,
+  StatusBar,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { MagnifyingGlassIcon } from "react-native-heroicons/outline";
 import {
@@ -10,12 +17,14 @@ import {
 import Loader from "@/components/Loader";
 import CarouselCard from "@/components/CarouselCard";
 import ScrollCard from "@/components/ScrollCard";
+import { useRouter } from "expo-router";
 
 export default function Home() {
   const [trending, setTrending] = useState([]);
   const [topRated, setTopRated] = useState([]);
   const [popular, setPopular] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter()
 
   useEffect(() => {
     getTopRatedMovie();
@@ -50,7 +59,9 @@ export default function Home() {
             />
             <Text className="text-white text-4xl">Kino Sifat</Text>
           </View>
-          <MagnifyingGlassIcon color={"white"} size={30} strokeWidth={2} />
+          <TouchableOpacity onPress={()=>router.push('/(screens)/search')}>
+            <MagnifyingGlassIcon color={"white"} size={30} strokeWidth={2} />
+          </TouchableOpacity>
         </View>
       </SafeAreaView>
       {isLoading ? (

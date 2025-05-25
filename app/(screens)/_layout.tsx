@@ -15,6 +15,14 @@ export default function StackLayout() {
         name="actorDetail"
         options={{ headerShown: false, title: "Actor detail" }}
       />
+      <Stack.Screen
+        name="search"
+        options={{
+          headerShown: true,
+          title: "Search",
+          headerStyle: { backgroundColor: "#081227" },
+        }}
+      />
     </Stack>
   );
 }
